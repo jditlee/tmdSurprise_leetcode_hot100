@@ -50,6 +50,13 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        """
+        hash字典存num对应的index，
+        遍历一次，查看target-当前num的值是否存在字典中
+        :param nums:
+        :param target:
+        :return:
+        """
         hashtable = dict()
         for i,num in enumerate(nums):
             if target-num in hashtable:
@@ -61,6 +68,12 @@ class Solution:
 
 # leetcode submit region end(Prohibit modification and deletion)
     def twoSum1(self, nums: List[int], target: int) -> List[int]:
+        """
+        暴力遍历两两数之和
+        :param nums:
+        :param target:
+        :return:
+        """
         n = len(nums)
         for i in range(n-1):
             for j in range(i+1,n):
