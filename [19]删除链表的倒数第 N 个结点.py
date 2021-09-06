@@ -45,8 +45,24 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dum = ListNode(0,head)
+        cur = dum
+        stack = list()
+        while cur:
+            stack.append(cur)
+            cur = cur.next
+        for i in range(n):
+            stack.pop()
+        pre = stack.pop()
+        pre.next = pre.next.next
+        return dum.next
+
+    # leetcode submit region end(Prohibit modification and deletion)
+    def removeNthFromEnd1(self, head: ListNode, n: int) -> ListNode:
         cur = pre = head
 
         for i in range(n):
@@ -57,6 +73,24 @@ class Solution:
         while cur and cur.next:
             cur = cur.next
             pre = pre.next
-        if pre.next: pre.next = pre.next.next
+        pre.next = pre.next.next
         return head
-# leetcode submit region end(Prohibit modification and deletion)
+
+
+    def removeNthFromEnd2(self, head: ListNode, n: int) -> ListNode:
+        """
+
+        :param head:
+        :param n:
+        :return:
+        """
+        dum = ListNode(0, head)
+        cur, pre = head, dum
+        for i in range(n):
+            cur = cur.next
+
+        while cur:
+            cur = cur.next
+            pre = pre.next
+        pre.next = pre.next.next
+        return dum.next
