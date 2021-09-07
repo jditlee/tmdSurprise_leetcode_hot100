@@ -59,16 +59,28 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         """
+        funny
+        :param s:
+        :return:
+        """
+        if len(s) & 1: return False
+        while "()" in s or "[]" in s or "{}" in s:
+            s=s.replace("()", "").replace("[]", "").replace("{}", "")
+        return s == ""
+
+    # leetcode submit region end(Prohibit modification and deletion)
+    def isValid1(self, s: str) -> bool:
+        """
         用栈存左边括号，遇到右边括号的时候弹栈判断两种括号是否成对
         :param s:
         :return:
-			执行耗时:20 ms,击败了99.79% 的Python3用户
-			内存消耗:14.7 MB,击败了99.11% 的Python3用户
+            执行耗时:20 ms,击败了99.79% 的Python3用户
+            内存消耗:14.7 MB,击败了99.11% 的Python3用户
         """
         # 判断长度为奇数直接false
         if len(s) & 1: return False
         stack = []
-        dic = {"(":")","{":"}","[":"]"}
+        dic = {"(": ")", "{": "}", "[": "]"}
         for i in s:
             if i in dic:
                 stack.append(i)
@@ -83,6 +95,7 @@ class Solution:
                 #     return False
         # return True if not stack else False 这句话真蠢
         return not stack
-# leetcode submit region end(Prohibit modification and deletion)
+
+
 if __name__ == '__main__':
     print(Solution().isValid("]()"))
