@@ -24,16 +24,16 @@ from typing import List
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        s,c=0,0
+        s, c = 0, 0
         m = collections.defaultdict(int)
         m[0] = 1
         for i in range(len(nums)):
-            s+=nums[i]
-            c+=m[s-k]
-            m[s]+=1
+            s += nums[i]
+            c += m[s - k]
+            m[s] += 1
         return c
 
-# leetcode submit region end(Prohibit modification and deletion)
+    # leetcode submit region end(Prohibit modification and deletion)
     def subarraySum1(self, nums: List[int], k: int) -> int:
         """
         超时
@@ -45,8 +45,8 @@ class Solution:
         c = 0
         for i in range(n):
             s = 0
-            for j in range(i,-1,-1):
+            for j in range(i, -1, -1):
                 s += nums[j]
-                if s==k:
-                    c+=1
+                if s == k:
+                    c += 1
         return c
