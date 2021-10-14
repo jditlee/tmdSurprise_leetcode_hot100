@@ -32,12 +32,36 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 # leetcode submit region begin(Prohibit modification and deletion)
 # Definition for a binary tree node.
 
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        if not root:return []
+        if not root: return []
+        from collections import deque
+        dq = deque()
+        dq.append(root)
+        res = []
+        while dq:
+            dqsize = len(dq)
+            tmp = []
+            for i in range(dqsize):
+                node = dq.popleft()
+                tmp.append(node.val)
+                if node.left: dq.append(node.left)
+                if node.right: dq.append(node.right)
+
+            res.append(tmp)
+
+        return res
+
+
+# leetcode submit region end(Prohibit modification and deletion)
+
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
         from collections import deque
         dq = deque()
         dq.append(root)
@@ -48,13 +72,12 @@ class Solution:
             for i in range(n):
                 node = dq.popleft()
                 t.append(node.val)
-                if node.left:dq.append(node.left)
-                if node.right:dq.append(node.right)
+                if node.left: dq.append(node.left)
+                if node.right: dq.append(node.right)
             res.append(t)
         return res
 
 
-# leetcode submit region end(Prohibit modification and deletion)
 if __name__ == '__main__':
     t = []
     # t.append(1)
