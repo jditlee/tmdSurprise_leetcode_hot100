@@ -35,6 +35,14 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         s1 = "".join(i.lower() for i in s if i.isalnum())
-        return s1==s1[::-1]
+        return s1 == s1[::-1]
+
+
 # leetcode submit region end(Prohibit modification and deletion)
 
+if __name__ == '__main__':
+    s = "a bche f g h"
+    s1 = "".join(i.lower() for i in s if i.isalnum())
+    s2 = (i.lower() for i in s if i.isalnum())
+    print(s1)
+    print(s2)
